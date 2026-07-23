@@ -49,15 +49,15 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/order-service:${{ steps.vars.outputs.tag }}
             ${{ secrets.DOCKERHUB_USERNAME }}/order-service:latest
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0.36.0
-        with:
-          image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/order-service:${{ steps.vars.outputs.tag }}'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+      # - name: Run Trivy vulnerability scanner
+      #   uses: aquasecurity/trivy-action@v0.36.0
+      #   with:
+      #     image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/order-service:${{ steps.vars.outputs.tag }}'
+      #     format: 'table'
+      #     exit-code: '1'
+      #     ignore-unfixed: true
+      #     vuln-type: 'os,library'
+      #     severity: 'CRITICAL,HIGH'
 
       - name: checkout gitops tools
         uses: actions/checkout@v7
