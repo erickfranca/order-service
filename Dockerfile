@@ -6,6 +6,7 @@ COPY src ./src
 RUN mvn -B clean package -DskipTests
 
 FROM eclipse-temurin:25-jre
+RUN apk upgrade --no-cache
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8087
