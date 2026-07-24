@@ -5,7 +5,7 @@ RUN mvn -B dependency:go-offline
 COPY src ./src
 RUN mvn -B clean package -DskipTests
 
-FROM eclipse-temurin:25-jre
+FROM eclipse-temurin:25-jre-alpine
 RUN apk upgrade --no-cache
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
