@@ -6,6 +6,8 @@ import com.efranca.orderservice.client.ShipmentResult;
 import com.efranca.orderservice.client.ShippingClient;
 import com.efranca.orderservice.model.Order;
 import com.efranca.orderservice.model.OrderStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -29,7 +31,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 @Service
 public class OrderService {
-
+    private static final Logger log = LoggerFactory.getLogger(OrderService.class);
     private final PaymentClient paymentClient;
     private final ShippingClient shippingClient;
     private final List<Order> orders = new CopyOnWriteArrayList<>();
@@ -41,6 +43,7 @@ public class OrderService {
 
     public Order placeOrder(String productId, Double amount, String shippingAddress) {
         String orderId = UUID.randomUUID().toString();
+        log.info("Processing order {} for product {}", orderId, productId);
 
         PaymentResult payment;
         try {
