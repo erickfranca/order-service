@@ -26,5 +26,9 @@ management:
   tracing:
     sampling:
       probability: 1.0
+  otlp:
+    metrics:
+      export:
+        enabled: false
   tags:
     application: ${spring.application.name}
