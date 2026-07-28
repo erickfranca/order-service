@@ -30,5 +30,10 @@ management:
     metrics:
       export:
         enabled: false
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: http://tempo.monitoring.svc.cluster.local:4318/v1/traces
   tags:
     application: ${spring.application.name}
